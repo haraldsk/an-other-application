@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: an-other-application
+spec:
+  selector:
+    matchLabels:
+      app: an-other-application
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: an-other-application
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: an-other-application
+  labels:
+    app: an-other-application
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 31500
+    port: 31500
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: an-other-application
