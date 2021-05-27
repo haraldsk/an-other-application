@@ -29,8 +29,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - nodePort: 31500
-    port: 31500
+  - nodePort: 31600
+    port: 31600
     targetPort: 80
     protocol: TCP
   selector:
